@@ -1,0 +1,51 @@
+Imaginemos a situação em que precisássemos resgatar todos os nomes que comecem com a letra "D" e tenham o CPF preenchido. Para isso, usamos o operador AND ,
+ que funciona como uma soma de condições, apresentando apenas os resultados que atendam às duas exigências que colocamos.
+
+SELECT *
+    FROM aluno
+  WHERE nome LIKE 'D%'
+    AND cpf IS NOT NULL;
+
+Se utilizássemos apenas nome LIKE 'D%' , nosso código retornaria todos os nomes iniciados com "D", quando apenas o Diogo tem o CPF preenchido.
+ Ao usarmos AND cpf IS NOT NULL , conseguimos retornar os registros que começam com "D" e o CPF não é nulo.
+
+Agora que entendemos o funcionamento do AND , aprenderemos a função do OR , que exibe os resultados que já atendem uma das condições impostas. Confira no exemplo abaixo.
+
+SELECT *
+    FROM aluno
+  WHERE nome LIKE 'Diogo'
+    OR nome LIKE 'Rodrigo';
+
+Portanto, aprendemos que quando usamos AND , aparecem apenas os resultados que atendem todas as exigências,
+enquanto ao usarmos OR o resultado só precisa atender à uma das condições para ser exibido. Faremos outro exemplo para fixarmos.
+
+SELECT *
+    FROM aluno
+  WHERE nome LIKE 'Diogo'
+    AND nome LIKE 'Nico%';
+
+    Para entendermos melhor esses operadores, podemos consultar a tabela verdade de cada um. A primeira tabela que analisaremos é a conjunção, equivalente ao filtro AND .
+
+A	B	A^B
+V	V	V
+V	F	F
+F	V	F
+F	F	F
+
+ operador OR é equivalente a tabela de disjunção, e funciona de outro modo.
+
+A	B	A^B
+V	V	V
+V	F	V
+F	V	V
+F	F	F
+
+
+Descobrimos então que, ao utilizarmos o operador "ou", se o dado já atender a uma das condições, ou seja, se uma das condições for verdadeira naquele dado, ele irá aparecer na nossa busca. A única forma de o dado não aparecer é se ele não atender a nenhuma das condições.
+
+Analisemos, então, um exemplo de quando filtro OR não retorna resultados.
+
+SELECT *
+    FROM aluno
+  WHERE nome LIKE 'Thiago'
+     OR nome LIKE 'Miguel';

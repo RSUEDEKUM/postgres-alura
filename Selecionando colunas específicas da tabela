@@ -1,0 +1,4 @@
+SELECT nome AS "Nome do Aluno",
+       idade,
+       matriculado_em AS quando_se_matriculou
+    FROM aluno;

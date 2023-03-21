@@ -1,0 +1,43 @@
+Começaremos criando uma tabela de cursos.
+
+CREATE TABLE curso (
+    id INTEGER,
+        nome VARCHAR(255)
+);
+Podemos incluir dados na nossa tabela com o comando INSERT INTO curso () , porém, atualmente, nossa tabela permite a inserção de valores inválidos. Então, ao executarmos o código INSERT INTO curso (id, nome) VALUES (NULL, NULL); , teremos uma linha com campos vazios no nosso banco de dados.
+
+Tabela "curso" com a primeira linha preenchida com "null" nas duas colunas, indicando que os dois campos estão vazios
+
+É importante sabermos quais os campos não podem ficar vazios para informarmos no momento em que criarmos a tabela, ou será permitido o registro de valores nulos. Então apagaremos nosso banco de dados com DROP TABLE curso; e criaremos outro.
+
+Na nova tabela, informaremos que os campos não podem receber o valor nulo com o comando NOT NULL .
+
+CREATE TABLE curso (
+    id INTEGER NOT NULL,
+        nome VARCHAR(255) NOT NULL
+);
+Se tentarmos executar novamente o comando INSERT INTO curso (id, nome) VALUES (NULL, NULL); , receberemos uma mensagem de falha, informando que não pode haver valores nulos nestes campos. Com essa limitação que impomos, a mensagem de sucesso na inclusão dos dados só aparecerá se preenchermos os dois campos.
+
+Executando o comando válido INSERT INTO curso (id, nome) VALUES (1, 'HTML'); , teremos o curso de "HTML" no nosso banco de dados, e podemos recuperar as informações dele com SELECT * FROM curso; . Contudo, temos que colocar outra limitação, como perceberemos com o exemplo a seguir.
+
+INSERT INTO curso (id, nome) VALUES (1, 'HTML');
+INSERT INTO curso (id, nome) VALUES (1, 'Javascript');
+Ao executarmos o código acima, percebemos a possibilidade de adicionar no nosso banco de dados um novo curso com o mesmo "id", o que também é ruim. Para impedir que isso aconteça, quando criarmos uma tabela, temos que informar que cada "id" precisa ser único. Faremos isso com o comando UNIQUE .
+
+Para testarmos essa nova funcionalidade, apagaremos a nossa tabela e criaremos outra, dessa vez declarando o campo "id" como id INTEGER NOT NULL UNIQUE, .
+
+Vamos executar o código INSERT INTO curso (id, nome) VALUES (1, 'HTML'); para registrarmos o curso de "HTML" e, ao pesquisarmos com SELECT * FROM curso; , percebemos que realizamos a inclusão com sucesso. Contudo, se tentarmos executar INSERT INTO curso (id, nome) VALUES (1, 'Javascript'); , receberemos uma mensagem de erro, informando que o "id" está duplicado, porque agora não podemos registrar dois cursos com o mesmo identificador. Ao trocarmos o "id" do curso de "Javascript" para "2", conseguimos incluí-lo no nosso banco de dados.
+
+Então determinamos que "id" do curso não pode ser nulo e será um número único, que são as mesmas características de uma chave primária. Portanto podemos trocar NOT NULL UNIQUE, que identifica o campo "id", por PRIMARY KEY e teremos as mesmas funções. Para testarmos, apagaremos mais uma vez a tabela "curso" e criaremos uma nova versão com o comando:
+
+CREATE TABLE curso (
+    id INTEGER PRIMARY KEY,
+        nome VARCHAR(255) NOT NULL
+);
+Com o "id" sendo uma chave primária, ele terá as mesmas características de antes, então se tentarmos colocar o mesmo "id" para os dois cursos aparecerá a mensagem de erro que vimos anteriormente. Só conseguimos adicionar os cursos de "HTML" e "Javascript" ao usarmos id's diferentes.
+
+INSERT INTO curso (id, nome) VALUES (1, 'HTML');
+INSERT INTO curso (id, nome) VALUES (2, 'Javascript');
+Executando SELECT * FROM curso, veremos que os dois cursos estão no nosso banco de dados, porque atribuímos id's diferentes para eles.
+
+Aprendemos, então, que uma chave primária não pode ser nula e precisa ser única. É possível criar chaves primárias compostas, juntando dois campos, mas isso veremos em outro momento. Agora você precisa entender apenas como funciona a chave primária em uma única coluna.

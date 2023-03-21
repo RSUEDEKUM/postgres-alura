@@ -1,0 +1,31 @@
+INSERT INTO aluno (nome) VALUES ('Vinícius Dias');
+INSERT INTO aluno (nome) VALUES ('Nico Steppat');
+INSERT INTO aluno (nome) VALUES ('João Roberto');
+INSERT INTO aluno (nome) VALUES ('Diego');
+
+
+O primeiro filtro que aprenderemos é o "igual", representado pelo símbolo = e usado para pesquisar um texto específico.
+SELECT *
+    FROM aluno
+ WHERE nome = 'Diogo';
+ 
+Começaremos aprendendo o _ , que significa "qualquer caractere naquela posição", ou seja, a posição que ele ocupa substitui um caractere.
+ Então se pesquisarmos com WHERE nome LIKE '_iogo', os nomes apresentados começarão por qualquer letra, mas terminarão com "iogo". Vejamos outro exemplo.
+SELECT * 
+    FROM aluno
+ WHERE nome LIKE 'Di_go';
+ 
+Agora aprenderemos o caractere % , que substitui todos os caracteres até o espaço que ele ocupa. Por exemplo, para recuperar todos os nomes que comecem com "D", usamos o comando:
+SELECT * 
+    FROM aluno
+ WHERE nome LIKE 'D%';
+
+ Outra possibilidade é recuperar todos os nomes que tenham espaço:
+SELECT * 
+    FROM aluno
+ WHERE nome LIKE '% %';
+
+ O % também pode ser usado entre textos, como %i%a%.
+ SELECT * 
+    FROM aluno
+ WHERE nome LIKE '%i%a%';

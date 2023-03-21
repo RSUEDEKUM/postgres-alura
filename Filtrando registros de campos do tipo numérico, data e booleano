@@ -1,0 +1,18 @@
+Por isso, para filtrarmos os campos nulos, usamos o comando IS NULL.
+
+SELECT *
+    FROM aluno
+ WHERE cpf IS NULL;
+
+ Também é possível usar o operador BETWEEN , que procura resultados entre dois valores declarados.
+
+SELECT *
+    FROM aluno
+ WHERE idade BETWEEN 10 AND 20;
+
+ Todos esses filtros que aprendemos agora funcionam para os campos INTERGER, REAL, SERIAL, NUMERIC, DATE, TIME e TIMESTAMP.
+
+Já campo BOOLEAN usará apenas os filtros = e <>. Por exemplo, o comando SELECT * FROM aluno WHERE ativo = true; irá retornar apenas os dados cujo campo ativo for "true",
+ no caso, o Diogo. Se colocarmos SELECT * FROM aluno WHERE ativo = false; , não teremos nenhum resultado, porque os demais campos são nulos.
+
+Para filtrar os resultados do campo boleano que sejam nulos, usamos o comando IS. Então SELECT * FROM aluno WHERE ativo IS NULL; mostrará os registros nos quais o campo "ativo" nulo.
